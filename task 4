@@ -1,0 +1,180 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
+public class StackVisualGUI extends JFrame {
+    private final ArrayList<Integer> stack = new ArrayList<>();
+    private final JPanel stackPanel = new JPanel();
+    private final JLabel statusLabel = new JLabel("Stack is empty");
+    private final JLabel topLabel = new JLabel("TOP: None");
+    private final JLabel sizeLabel = new JLabel("SIZE: 0");
+    public StackVisualGUI() {
+        setTitle("Stack Visual Demonstration");
+        setSize(500, 650);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout(10, 10));
+    JLabel title = new JLabel("STACK VISUALIZER", SwingConstants.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 24));
+        add(title, BorderLayout.NORTH);
+        stackPanel.setLayout(new BoxLayout(stackPanel, BoxLayout.Y_AXIS));
+        stackPanel.setBorder(BorderFactory.createTitledBorder("Stack Elements"));
+        stackPanel.setBackground(Color.WHITE);
+        JScrollPane scrollPane = new JScrollPane(stackPanel);
+        add(scrollPane, BorderLayout.CENTER);
+        JPanel bottomPanel = new JPanel(new GridLayout(0, 2, 8, 8));
+ton(bottomPanel, "PUSH", this::push);
+        addButton(bottomPanel, "POP", this::pop);
+        addButton(bottomPanel, "PEEK", this::peek);
+        addButton(bottomPanel, "SIZE", this::showSize);
+        addButton(bottomPanel, "EMPTY", this::checkEmpty);
+        addButton(bottomPanel, "RANDOM", this::randomElement);
+        addButton(bottomPanel, "CLEAR", this::clearStack);
+        JPanel infoPanel = new JPanel(new GridLayout(3, 1, 4, 4));
+        infoPanel.add(topLabel);
+        infoPanel.add(sizeLabel);
+        infoPanel.add(statusLabel);
+        JPanel southPanel = new JPanel(new BorderLayout(5, 5));
+        southPanel.add(infoPanel, BorderLayout.NORTH);
+        southPanel.add(bottomPanel, BorderLayout.CENTER);
+        add(southPnel, BorderLayout.SOUTH);
+        updateDisplay();
+    }
+    private void addButton(JPanel panel, String name, Runnable action) {
+        JButton button = new JButton(name);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.addActionListener(e -> action.run());
+        panel.add(button);
+    }
+    // PUSH: Add an element to the top
+    private void push() {
+        String input = JOptionPane.showInputDialog(
+                this, "Enter a number to push:");
+        if (input == null) {
+            return;
+        }
+        try {
+            int value = Integer.parseInt(input.trim());
+            stack.add(value);
+            statusLabel.setText("PUSH successful: " + value);
+            updateDisplay();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(
+                    this, "Please enter a valid integer.");
+        }
+    }
+    // POP: Remove the top element
+    private void pop() {
+        if (stack.isEmpty()) {
+            showEmptyMessage();
+            return;
+        }
+        int removed = stack.remove(stack.size() - 1);
+        statusLabel.setText("POP: Removed " + removed);
+        updateDisplay();
+    }
+    // PEEK: View the top without removing it
+    private void peek() {
+        if (stack.isEmpty()) {
+            showEmptyMessage();
+            return;
+        }
+        int top = stack.get(stack.size() - 1);
+        statusLabel.setText("PEEK: " + top);
+        JOptionPane.showMessageDialog(
+                this, "Top element: " + top,
+                "PEEK Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+    // SIZE: Count the elements
+    private void showSize() {
+        statusLabel.setText("Stack size: " + stack.size());
+        JOptionPane.showMessageDialog(
+                this, "Number of elements: " + stack.size(),
+                "SIZE Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+    // EMPTY: Check whether the stack is empty
+    private void checkEmpty() {
+        boolean empty = stack.isEmpty();
+        statusLabel.setText("EMPTY: " + empty);
+        JOptionPane.showMessageDialog(
+                this, empty ? "The stack is empty."
+                        : "The stack is not empty.",
+                "EMPTY Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+    // RANDOM: Select an element without removing it
+    private void randomElement() {
+        if (stack.isEmpty()) {
+            showEmptyMessage();
+            return;
+        }
+        Random random = new Random();
+        int index = random.nextInt(stack.size());
+        int value = stack.get(index);
+        statusLabel.stText("RANDOM selected: " + value);
+        JOptionPane.showMessageDialog(
+                this, "Random element: " + value,
+                "RANDOM Result", JOptionPane.INFORMATION_MESSAGE);
+    }
+    // CLEAR: Remove all elements
+    private void clearStack() {
+        stack.clear();
+        statusLabel.setText("Stack cleared successfully.");
+        updateDisplay();
+    }
+    private void showEmptyMessage() {
+        statusLabel.setText("Stack is empty.");
+        JOptionPane.showMessageDialog(
+                this, "The stack is empty. No operation can be performed.",
+                "Empty Stack", JOptionPane.WARNING_MESSAGE);
+    }
+    // Refresh the graphical stack after every change
+    private void updateDisplay() {
+        stackPanel.removeAll();
+        if (stack.isEmpty()) {
+            JLabel emptyLabel = new JLabel(
+                    "Stack is empty", SwingConstants.CENTER);
+            emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            emptyLabel.setBorder(BorderFactory.createEmptyBorder(
+                    20, 10, 20, 10));
+            stackPanel.add(emptyLabel);
+            topLabel.setText("TOP: None");
+        } else {
+            for (int i = stack.size() - 1; i >= 0; i--) {
+                int value = stack.get(i);
+                JLabel element = new JLabel(
+                        i == stack.size() - 1
+                                ? "TOP  ->  " + value
+                                : "          " + value,
+                        SwingConstants.CENTER);
+                element.setFont(new Font("Arial", Font.BOLD, 18))
+                element.setAlignmentX(Component.CENTER_ALIGNMENT);
+                element.setMaximumSize(new Dimension(250, 45));
+                element.setPreferredSize(new Dimension(250, 45));
+                element.setOpaque(true);
+                element.setBackground(
+                        i == stack.size() - 1
+                                ? new Color(135, 206, 250)
+                                : new Color(230, 230, 230));
+                element.setBorder(BorderFactory.createLineBorder(
+                        Color.DARK_GRAY, 1));
+                stackPanel.add(element);
+                stackPanel.add(Box.createVerticalStrut(4));
+            }
+            topLabel.setText(
+                    "TOP: " + stack.get(stack.size() - 1));
+        }
+        sizeLabel.setText("SIZE: " + stack.size());
+        stackPanel.revalidate();
+        stackPanel.repaint();
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            StackVisualGUI gui = new StackVisualGUI();
+            gui.setVisible(true);
+
+        });
+
+    }
+
+}
+
