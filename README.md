@@ -74,6 +74,23 @@ When the user clicks PUSH, the value is added to the top of the stack. When POP 
 
 The graphical interface updates whenever an operation is performed so that the displayed stack matches the actual contents of the array.
 
+# Screenshots
+This section contains screenshots of our program showing how the different stack operations work.
+
+[Screenshot of the main interface]
+
+[Screenshot of PUSH operation]
+
+[Screenshot of POP operation]
+
+[Screenshot of PEEK operation]
+
+[Screenshot of RANDOM operation]
+
+[Screenshot of CLEAR operation]
+
+[Screenshot of overflow and underflow messages]
+
 # AI Disclosure
 Our group used ChatGPT as a guide while working on this project. It helped us understand the stack data structure, organize our program, and learn how some Java methods work. We also used it to get suggestions for improving our code and documentation.
 
