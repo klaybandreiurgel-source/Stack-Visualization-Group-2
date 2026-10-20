@@ -1,1 +1,7 @@
+<project name="StackVisualizer" default="compile">
 
+    <target name="compile">
+        <javac srcdir="src" destdir="build"/>
+    </target>
+
+</project>
