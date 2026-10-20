@@ -1,17 +1,1 @@
-# Ignore compiled Java files
-*.class
 
-# Ignore NetBeans generated folders
-/build/
-/dist/
-
-# Ignore personal NetBeans settings
-/nbproject/private/
-
-# Ignore temporary files
-*.log
-*.tmp
-
-# Ignore operating system files
-.DS_Store
-Thumbs.db
