@@ -26,3 +26,39 @@ public class MyStack {
         top--;
         return value;
     }
+
+ public int peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("STACK EMPTY: Cannot peek, stack is empty");
+        }
+        return data[top];
+    }
+
+    public void clear() {
+        top = -1;
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == MAX_CAPACITY - 1;
+    }
+
+    public int size() {
+        return top + 1;
+    }
+
+    public int capacity() {
+        return MAX_CAPACITY;
+    }
+
+    public int[] toArray() {
+        int[] copy = new int[size()];
+        for (int i = 0; i < copy.length; i++) {
+            copy[i] = data[i];
+        }
+        return copy;
+    }
+}
