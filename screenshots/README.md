@@ -22,7 +22,7 @@
 ![Peek 50](screenshots/peek50-operation.png)
 
 ### 8. SIZE
-![Size](screenshots/08-size.png)
+![Size](screenshots/ize-operation.png)
 
 ### 9. POP 50
 ![Pop 50](screenshots/pop50-operation.png)
