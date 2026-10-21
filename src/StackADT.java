@@ -1,3 +1,17 @@
+/*
+Description: This program implements an array-based stack with a
+maximum capacity of 10 elements. It supports PUSH, POP, PEEK,
+isEmpty, isFull, size, and CLEAR operations.
+
+Programmed by: Gonzaga, Lumanta, BSIT, 48143, Data Structure and Algorithms
+Last Modified: October 21, 2026
+Version: 1.0
+Acknowledgements: OpenAI ChatGPT (GPT-6) assisted with drafting and explaining
+the Java stack implementation.
+Prompt used: "Assist me create a Java Stack ADT using an array
+with PUSH, POP, PEEK, isEmpty, isFull, size, and CLEAR operations."
+*/
+
 public class MyStack {
 
     public static final int MAX_CAPACITY = 10;
