@@ -1,17 +1,24 @@
-# Compiled Java files
+# Stack Visualization - Group 2
+# Java NetBeans Project
+
+# Ignore compiled Java files
 *.class
 
-# Generated build folders
+# Ignore generated build folders
 /build/
 /dist/
 
-# Personal NetBeans settings
+# Ignore personal NetBeans settings only
 /nbproject/private/
 
-# Temporary files
+# Ignore temporary files
 *.log
 *.tmp
+*.bak
 
-# Operating system files
+# Ignore operating system files
 .DS_Store
 Thumbs.db
+
+# Ignore backup files
+*~
