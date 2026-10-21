@@ -1,3 +1,18 @@
+/*
+Description: This program uses Java Swing to create a graphical
+interface that visually represents stack operations. It displays
+stack elements and updates the visualization when PUSH, POP,
+PEEK, CHECK STACK, RANDOM, and CLEAR operations are performed.
+
+Programmed by: Dela Torre, Torres, Urgel
+Last Modified: October 21, 2026
+Version: 1.0
+Acknowledgements: OpenAI ChatGPT (GPT-6) assisted with drafting and explaining
+the Java Swing graphical interface.
+Prompt used: "Assist me create a Java Swing GUI that visually represents a stack and supports PUSH, POP, PEEK, CHECK STACK,
+RANDOM, and CLEAR operations."
+*/
+
 import java.awt.*;
 import java.util.Random;
 import javax.swing.*;
