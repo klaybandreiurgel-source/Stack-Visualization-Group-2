@@ -101,7 +101,7 @@ This section contains screenshots of our program showing how the different stack
 ![Peek 50](screenshots/peek50-operation.png)
 
 ### 8. SIZE
-![Size](screenshots/ize-operation.png)
+![Size](screenshots/size-operation.png)
 
 ### 9. POP 50
 ![Pop 50](screenshots/pop50-operation.png)
